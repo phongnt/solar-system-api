@@ -46,6 +46,8 @@ func newDBConn() (con *pg.DB) {
 func createSchema(db *pg.DB) error {
     dbModels := [] interface{} {
         (*models.Body)(nil),
+        (*models.PhysicalCharacteristic)(nil),
+        (*models.OrbitalParameter)(nil),
     }
 
     for _, model := range dbModels {

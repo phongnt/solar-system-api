@@ -11,7 +11,7 @@
 * Run built image
 
   ```bash
-  docker run -p 8081:8080 --name container-name image-name
+  docker run --env-file .env -p 8081:8080 --name container-name image-name
   ```
 
 * Verify by health checking

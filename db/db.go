@@ -5,6 +5,7 @@ import (
     "github.com/go-pg/pg/v10"
     "github.com/go-pg/pg/v10/orm"
     "log"
+    "topcoder.com/skill-builder/golang/config"
     "topcoder.com/skill-builder/golang/models"
 )
 
@@ -25,13 +26,13 @@ func GetDBObject() *pg.DB {
 }
 
 func newDBConn() (con *pg.DB) {
-    //TODO: Easy-250: Read these from environment variables (check config.go)
-    address := fmt.Sprintf("%s:%s", "localhost", "5432")
+    dbConfig := config.GetDbConfig()
+    address := fmt.Sprintf("%s:%s", dbConfig.Host, dbConfig.Port)
     options := &pg.Options {
-        User: "docker",
-        Password: "docker",
+        User: dbConfig.User,
+        Password: dbConfig.Password,
         Addr: address,
-        Database: "postgres",
+        Database: dbConfig.Database,
         PoolSize: 50,
     }
 
